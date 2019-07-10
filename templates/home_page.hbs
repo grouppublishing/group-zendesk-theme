@@ -1,0 +1,110 @@
+<section class="section hero">
+  <div class="hero-inner">
+    <h1>Group Product Support</h1>
+    <h2>What can we help you with?</h2>
+    {{search submit=false instant=settings.instant_search class='search search-full'}}
+  </div>
+</section>
+
+<div class="container">
+  <section class="section knowledge-base">
+    <section class="intro blocks">
+      <ul class="blocks-list">
+        <li class="blocks-item">
+          <a href='#' class="blocks-item-link">
+            <img class="blocks-item-icon" src="https:{{asset 'phone.png'}}" />
+            <h4 class="blocks-item-title">Call Us</h4>
+            <p class="blocks-item-description">1-800-447-1070</p><p class="blocks-item-description">Monday - Friday: <br>7:00am - 5:00pm MT</p>
+          </a>
+        </li>
+       <li class="blocks-item">
+          <a href='#' class="blocks-item-link">
+            <img class="blocks-item-icon" src="https:{{asset 'phone.png'}}" />
+            <h4 class="blocks-item-title">Shopping Assistance</h4>
+            <p class="blocks-item-description">We're committed to creating a thoughtfully online experience that allows you to browse, search and find the information you need, right now.</p>
+          </a>
+        </li>
+        <li class="blocks-item">
+          <a href='#' class="blocks-item-link">
+            <img class="blocks-item-icon" src="https:{{asset 'phone.png'}}" />
+            <h4 class="blocks-item-title">Download Assistance</h4>
+            <p class="blocks-item-description">Get help with your access your electronic resources or downloads.</p>
+          </a>
+        </li>
+      </ul>
+      {{pagination}}
+    </section>
+		<section class="categories blocks">
+      <div class="categories-heading">
+  			<h4>Product Categories</h4>
+    		<h3>What are you looking for?</h3>
+      </div>
+      <ul>
+        <li>Main</li>
+        <li>Children's Ministry</li>
+        <li>Youth Ministry</li>
+        <li>Women's Ministry</li>
+        <li>Volunteer Management</li>
+      </ul>
+      <ul class="blocks-list">
+        {{#each categories}}
+          {{#if ../has_multiple_categories}}
+            <li class="blocks-item">
+              <a href='{{url}}' class="blocks-item-link">
+                <h4 class="blocks-item-title">{{name}}</h4>
+                <p class="blocks-item-description">{{excerpt description}}</p>
+              </a>
+            </li>
+          {{else}}
+            {{#each sections}}
+              <li class="blocks-item">
+                <a href='{{url}}' class="blocks-item-link">
+                  <h4 class="blocks-item-title">
+                    {{name}}
+                  </h4>
+                  <p class="blocks-item-description">{{excerpt description}}</p>
+                </a>
+              </li>
+            {{/each}}
+          {{/if}}
+        {{/each}}
+      </ul>
+    </section> 
+
+    {{#if promoted_articles}}
+      <section class="articles">
+        <h3>{{t 'promoted_articles'}}</h3>
+        <ul class="article-list promoted-articles">
+          {{#each promoted_articles}}
+            <li class="promoted-articles-item">
+                <a href="{{url}}">
+                  {{title}}
+
+                  {{#if internal}}
+                    <span class="icon-lock" title="{{t 'internal'}}"></span>
+                  {{/if}}
+                </a>
+            </li>
+          {{/each}}
+        </ul>
+      </section>
+    {{/if}}
+  </section>
+
+  {{#if help_center.community_enabled}}
+    <section class="section community">
+      <h2>{{t 'community'}}</h2>
+      {{#link 'community' class='community-link'}}
+        {{t 'join_conversation'}}
+      {{/link}}
+
+      <div class="community-image"></div>
+    </section>
+  {{/if}}
+
+  <section class="section activity">
+    {{#if settings.show_recent_activity}}
+      {{recent_activity}}
+    {{/if}}
+  </section>
+</div>
